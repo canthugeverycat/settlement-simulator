@@ -2,20 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './animations.scss';
+
 @layer base {
   /* Reset button styles */
-  button {
+  button,
+  input {
     @apply ring-transparent;
     @apply focus:ring-transparent;
     @apply active:ring-transparent;
+
+    outline: none;
   }
 }
 
 .mask-image-logo {
   -webkit-mask-image: url('../assets/logo.png');
   mask-image: url('../assets/logo.png');
+
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+
   -webkit-mask-size: contain;
   mask-size: contain;
 }

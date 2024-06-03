@@ -12,6 +12,13 @@ const config = {
         indigo: '#9370FF',
         primary: '#578A8C',
         secondary: '#2E1A31',
+        success: '#7EDF4A',
+        error: '#E53431',
+        info: '#EEB958',
+      },
+      boxShadow: {
+        'up-lg':
+          '0 -10px 15px -3px rgba(0, 0, 0, 0.1), 0 -4px 6px -4px rgba(0, 0, 0, 0.1)',
       },
       fontFamily: {
         sans: ['Open Sans', 'sans-serif'],

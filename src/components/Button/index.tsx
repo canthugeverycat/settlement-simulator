@@ -1,6 +1,7 @@
 type ButtonProps = {
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'full';
   color?: 'primary' | 'secondary';
+  className?: string;
   children: React.ReactNode;
   onClick?: () => void;
 };
@@ -12,29 +13,31 @@ type ButtonProps = {
 const Button = ({
   size = 'medium',
   color = 'primary',
+  className = '',
   children,
   onClick,
 }: ButtonProps) => {
   const baseClass =
-    'border-2 font-bold uppercase transition-all duration-200 hover:scale-95 active:scale-100';
+    'font-bold uppercase transition-all duration-200 hover:bg-gradient-to-l opacity-1 hover:opacity-90 hover:scale-105 active:scale-100';
 
   const sizeClass = {
-    small: 'px-6 py-3 text-sm shadow-sm',
-    medium: 'px-10 py-5 text-lg shadow-md',
-    large: 'py-8 px-16 text-xl shadow-lg',
+    small: 'px-4 py-2 text-xs shadow-sm',
+    medium: 'px-6 py-3 text-sm shadow-sm',
+    large: 'px-10 py-4 text-lg shadow-md',
+    full: 'px-10 py-5 text-lg shadow-md w-full',
   }[size];
 
   const colorClass = {
     primary:
-      'border-primary text-primary hover:border-white hover:bg-primary hover:text-white',
+      'text-white bg-gradient-to-r from-primary to-blue-400 hover:bg-secondary',
     secondary:
-      'border-secondary text-secondary hover:border-white hover:bg-secondary hover:text-white',
+      'text-white bg-gradient-to-r from-secondary to-purple-400 hover:bg-secondary',
   }[color];
 
   return (
     <button
       onClick={onClick}
-      className={`${baseClass} ${sizeClass} ${colorClass}`}
+      className={`${className} ${baseClass} ${sizeClass} ${colorClass}`}
     >
       {children}
     </button>
