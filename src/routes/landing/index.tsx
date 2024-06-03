@@ -25,11 +25,15 @@ const LandingPage = () => {
         <Button
           size="medium"
           color="secondary"
-          onClick={() => navigate('partyA')}
+          onClick={() => navigate('/settlement?party=a')}
         >
           Party A
         </Button>
-        <Button size="medium" color="secondary" onClick={() => {}}>
+        <Button
+          size="medium"
+          color="secondary"
+          onClick={() => navigate('/settlement?party=b')}
+        >
           Party B
         </Button>
       </div>

@@ -7,6 +7,7 @@
 @layer base {
   /* Reset button styles */
   button,
+  textarea,
   input {
     @apply ring-transparent;
     @apply focus:ring-transparent;

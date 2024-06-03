@@ -18,7 +18,7 @@ const Logo = ({ size = 'medium', className = '' }: LogoProps) => {
   }[size];
 
   return (
-    <a href="https://leylinepro.com/" target="_blank" rel="noreferrer">
+    <a href="/">
       <img
         className={`${className} ${sizeClasses} mask-image-logo`}
         src={NetworkGif}

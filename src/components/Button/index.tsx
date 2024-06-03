@@ -1,6 +1,6 @@
 type ButtonProps = {
   size?: 'small' | 'medium' | 'large' | 'full';
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'success' | 'error';
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
@@ -32,6 +32,10 @@ const Button = ({
       'text-white bg-gradient-to-r from-primary to-blue-400 hover:bg-secondary',
     secondary:
       'text-white bg-gradient-to-r from-secondary to-purple-400 hover:bg-secondary',
+    success:
+      'text-white bg-gradient-to-r from-success to-primary hover:bg-secondary',
+    error:
+      'text-white bg-gradient-to-r from-error to-red-800 hover:bg-secondary',
   }[color];
 
   return (

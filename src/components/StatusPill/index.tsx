@@ -5,6 +5,10 @@ type StatusPillProps = {
   status: 'accepted' | 'rejected' | 'pending';
 };
 
+/**
+ * A pill element showing the settlement status
+ * @param {StatusPillProps} props
+ */
 const StatusPill = ({
   size = 'medium',
   className = '',
