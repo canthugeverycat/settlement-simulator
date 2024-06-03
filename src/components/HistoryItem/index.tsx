@@ -1,30 +1,72 @@
 import StatusPill from '../StatusPill';
 
+type HistoryItemProps = {
+  party: 'a' | 'b';
+  status: 'accepted' | 'rejected' | 'pending';
+  message?: string;
+  className?: string;
+};
 /**
  * A history item showing one activity
+ * @param {HistoryItemProps} props;
  */
-const HistoryItem = () => {
+const HistoryItem = ({
+  party,
+  status,
+  message,
+  className = '',
+}: HistoryItemProps) => {
+  const alignContainerClasses = {
+    a: 'mr-auto',
+    b: 'ml-auto',
+  }[party];
+
+  const alignNameClasses = {
+    a: 'left-2',
+    b: 'right-2',
+  }[party];
+
+  const alignDateClasses = {
+    a: 'left-4',
+    b: 'right-4',
+  }[party];
+
+  const alignStatusClasses = {
+    a: 'right-2',
+    b: 'left-2',
+  }[party];
+
   return (
-    <div className="relative flex w-full flex-col rounded-md border-2 p-4 pb-8 shadow-lg">
+    <div
+      className={`${className} ${alignContainerClasses} relative flex max-w-[90%] flex-col rounded-md border-2 p-4 pb-8 shadow-lg`}
+    >
       {/* Party name */}
-      <span className="absolute -top-3 left-2 rounded-full border-2 bg-white px-2 py-0.5 text-xs font-bold uppercase">
-        Party B
+      <span
+        className={`${alignNameClasses} absolute -top-3 rounded-full border-2 bg-white px-2 py-0.5 text-xs font-bold uppercase`}
+      >
+        Party {party}
       </span>
 
       {/* Message */}
-      <p>"Not enough money, sorry!"</p>
+      {message ? (
+        <p>"{message}"</p>
+      ) : (
+        <p className="text-sm text-light-grey">{`<No message provided>`}</p>
+      )}
 
       {/* Datetime */}
-      <span className="absolute bottom-2.5 left-4 text-xs text-light-grey">
+      <span
+        className={`${alignDateClasses} absolute bottom-2.5 text-xs text-light-grey`}
+      >
         Mon 3 Jun 16:29
       </span>
 
       {/* Status */}
       <StatusPill
-        className="bottom-2 right-2"
+        className={`${alignStatusClasses} bottom-2`}
         size="small"
         animate={false}
-        status="rejected"
+        {...{ status }}
       />
     </div>
   );

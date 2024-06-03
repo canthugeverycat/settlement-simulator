@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
+import History from './routes/history';
 import LandingPage from './routes/landing';
 import Settlement from './routes/settlement';
 
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/settlement" element={<Settlement />} />
+        <Route path="/history" element={<History />} />
       </Routes>
     </main>
   );

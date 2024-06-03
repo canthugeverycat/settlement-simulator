@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import HistoryItem from '../../components/HistoryItem';
 import InputForm from '../../components/InputForm';
@@ -36,7 +36,14 @@ const Settlement = () => {
 
       {/* Last change */}
       <p className="mb-4">Latest change</p>
-      <HistoryItem />
+      <HistoryItem className="w-full" party="b" status="rejected" />
+
+      <NavLink
+        to="/history"
+        className="mt-2 text-sm font-bold uppercase text-primary transition-all duration-200 hover:scale-105 active:scale-100"
+      >
+        See full history
+      </NavLink>
     </div>
   );
 };

@@ -27,3 +27,7 @@
   -webkit-mask-size: contain;
   mask-size: contain;
 }
+
+.max-h-with-margins {
+  max-height: calc(100vh - 4rem);
+}

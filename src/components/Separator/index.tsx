@@ -12,6 +12,7 @@ const Separator = ({
   direction = 'bottom',
 }: SeparatorProps) => {
   const spacingClass = {
+    none: '',
     small: 'my-2',
     medium: 'my-4',
     large: 'my-8',
@@ -23,7 +24,9 @@ const Separator = ({
   }[direction];
 
   return (
-    <div className={`${spacingClass} ${directionClass} h-[10px] w-full`}></div>
+    <div
+      className={`${spacingClass} ${directionClass} h-[10px] w-full flex-shrink-0`}
+    ></div>
   );
 };
 
