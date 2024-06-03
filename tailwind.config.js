@@ -12,7 +12,7 @@ const config = {
         indigo: '#9370FF',
         primary: '#578A8C',
         secondary: '#2E1A31',
-        success: '#7EDF4A',
+        success: '#16A34A',
         error: '#E53431',
         info: '#EEB958',
       },
