@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Reset button styles */
+  button {
+    @apply ring-transparent;
+    @apply focus:ring-transparent;
+    @apply active:ring-transparent;
+  }
+}
+
+.mask-image-logo {
+  -webkit-mask-image: url('../assets/logo.png');
+  mask-image: url('../assets/logo.png');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}

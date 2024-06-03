@@ -11,8 +11,13 @@
     "",
     "^[.]"
   ],
+  "organizeAttributes": {
+    "attributes": ["className"],
+    "groups": ["className", "$default"]
+  },
   "plugins": [
     "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss"
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-organize-attributes"
   ]
 }
