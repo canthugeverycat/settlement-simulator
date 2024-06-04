@@ -28,7 +28,7 @@ const ToggleableTextarea = ({ value, onChange }: ToggleableTextAreaProps) => {
         className="mb-4 flex cursor-pointer items-center justify-center text-xs font-semibold uppercase text-light-grey transition-all duration-200 hover:scale-105 active:scale-100"
         onClick={handleMessageVisibility}
       >
-        {showMessage ? 'Hide' : 'Add a'} message
+        {showMessage ? 'Hide' : 'Show a'} message
       </div>
     </div>
   );

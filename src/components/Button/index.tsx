@@ -1,7 +1,10 @@
+import Loader from '../Loader';
+
 type ButtonProps = {
   size?: 'small' | 'medium' | 'large' | 'full';
   color?: 'primary' | 'secondary' | 'success' | 'error';
   disabled?: boolean;
+  showLoader?: boolean;
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
@@ -15,12 +18,13 @@ const Button = ({
   size = 'medium',
   color = 'primary',
   disabled = false,
+  showLoader = false,
   className = '',
   children,
   onClick,
 }: ButtonProps) => {
   const baseClass =
-    'font-bold uppercase transition-all duration-200 hover:bg-gradient-to-l opacity-1 hover:opacity-90 hover:scale-105 active:scale-100';
+    'relative font-bold uppercase transition-all duration-200 opacity-1 active:scale-100';
 
   const sizeClass = {
     small: 'px-4 py-2 text-xs shadow-sm',
@@ -37,16 +41,23 @@ const Button = ({
   }[color];
 
   const disabledClass = disabled
-    ? 'bg-gradient-to-r from-black to-light-grey hover:scale-100 hover:bg-gradient-to-r opacity-20 hover:opacity-20'
-    : '';
+    ? 'bg-gradient-to-r from-black to-light-grey opacity-20'
+    : 'hover:opacity-90 hover:scale-105 hover:bg-gradient-to-l';
 
   return (
     <button
       onClick={onClick}
-      disabled={disabled}
+      disabled={disabled || showLoader}
       className={`${className} ${baseClass} ${sizeClass} ${colorClass} ${disabledClass}`}
     >
       {children}
+
+      {showLoader && (
+        <Loader
+          color="white"
+          className="absolute left-1/2 top-1/2 -ml-4 -mt-4"
+        />
+      )}
     </button>
   );
 };

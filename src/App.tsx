@@ -35,7 +35,7 @@ const App = () => {
   }, [fetchSettlements]);
 
   return (
-    <main className="flex h-screen items-center justify-center overflow-scroll bg-gradient-to-r from-lilac to-indigo">
+    <main className="flex min-h-screen items-center justify-center overflow-scroll bg-gradient-to-r from-lilac to-indigo">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/settlement" element={<Settlement />} />

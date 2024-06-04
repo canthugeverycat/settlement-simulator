@@ -6,11 +6,13 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const settlementsRouter = require('./api');
+const delayMiddleware = require('./api/delay.js');
 
 const app = express();
 const server = http.createServer(app);
 
 app.use(express.json());
+app.use(delayMiddleware);
 app.use(
   cors({
     origin: '*',

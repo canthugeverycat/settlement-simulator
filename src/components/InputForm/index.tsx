@@ -1,10 +1,11 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import type {
   SettlementPartyType,
   SettlementStatusType,
 } from '../../globals/types';
+import type { RootStateType } from '../../store/rootReducer';
 import {
   createItem,
   createItemFailure,
@@ -42,6 +43,10 @@ const InputForm = ({
   const dispatch = useDispatch();
   const [value, setValue] = useState(amount);
   const [text, setText] = useState(message || '');
+
+  const isUpdating = useSelector(
+    (store: RootStateType) => store.settlements.isUpdating
+  );
 
   const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) =>
     setValue(parseFloat(e.target.value));
@@ -122,6 +127,8 @@ const InputForm = ({
         <div className="flex flex-row justify-center gap-4">
           <Button
             color="success"
+            disabled={isUpdating}
+            showLoader={isUpdating}
             size="large"
             className="mb-8"
             onClick={() => handleCreateSettlementItem('accepted')}
@@ -129,6 +136,8 @@ const InputForm = ({
             Agree
           </Button>
           <Button
+            disabled={isUpdating}
+            showLoader={isUpdating}
             color="error"
             size="large"
             className="mb-8"
@@ -139,7 +148,8 @@ const InputForm = ({
         </div>
       ) : (
         <Button
-          disabled={!value}
+          disabled={!value || isUpdating}
+          showLoader={isUpdating}
           color="primary"
           size="full"
           className="mb-8"

@@ -4,6 +4,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import HistoryItem from '../../components/HistoryItem';
 import InputForm from '../../components/InputForm';
+import Loader from '../../components/Loader';
 import Logo from '../../components/Logo';
 import Separator from '../../components/Separator';
 import { SettlementPartyType } from '../../globals/types';
@@ -20,6 +21,10 @@ const Settlement = () => {
   const party = ['a', 'b'].includes(paramParty || '')
     ? (paramParty as SettlementPartyType)
     : null;
+
+  const isFetching = useSelector(
+    (store: RootStateType) => store.settlements.isFetching
+  );
 
   // Get last item from the settlement
   const [lastItem] = useSelector(
@@ -53,7 +58,7 @@ const Settlement = () => {
   }, [party, navigate]);
 
   return (
-    <div className="flex max-w-[400px] flex-col items-center rounded-md bg-white px-6 py-10 shadow-lg">
+    <div className="my-4 flex max-w-[400px] flex-col items-center rounded-md bg-white px-6 py-10 shadow-lg">
       {/* Logo and title */}
       <Logo size="extrasmall" />
       <p className="mb-4 text-3xl">Party {party?.toUpperCase()}</p>
@@ -61,8 +66,14 @@ const Settlement = () => {
       <Separator />
 
       {/* Settlement input with button */}
-      <p className="mb-4 mt-6">Settlement amount</p>
-      <InputForm {...{ ...lastItem, party }} />
+      {isFetching ? (
+        <Loader />
+      ) : (
+        <>
+          <p className="mb-4 mt-6">Settlement amount</p>
+          <InputForm {...{ ...lastItem, party }} />
+        </>
+      )}
 
       <Separator direction="top" spacing="small" />
 
