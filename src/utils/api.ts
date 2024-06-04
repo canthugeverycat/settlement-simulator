@@ -15,20 +15,12 @@ export const fetchSettlements = async () => {
  * Submits a settlement amount from party A to party B
  *
  * @param {number} amount Monetary amount
- * @param {string} message A message to send with the submission
  */
-export const submitSettlement = async ({
-  amount,
-  message,
-}: {
-  amount: number;
-  message: string;
-}) => {
+export const submitSettlement = async ({ amount }: { amount: number }) => {
   const response = await axios.post(`${API_BASE_URL}/settlements`, {
     party: 'a',
     status: 'pending',
     amount,
-    message,
   });
 
   return response.data;
@@ -38,20 +30,12 @@ export const submitSettlement = async ({
  * Rejects a settlement amount from party B to party A
  *
  * @param {number} amount Monetary amount
- * @param {string} message A message to send with the submission
  */
-export const rejectSettlement = async ({
-  amount,
-  message,
-}: {
-  amount: number;
-  message: string;
-}) => {
+export const rejectSettlement = async ({ amount }: { amount: number }) => {
   const response = await axios.post(`${API_BASE_URL}/settlements`, {
     party: 'b',
     status: 'rejected',
     amount,
-    message,
   });
 
   return response.data;
@@ -61,20 +45,12 @@ export const rejectSettlement = async ({
  * Accepts a settlement amount from party A to party B
  *
  * @param {number} amount Monetary amount
- * @param {string} message A message to send with the submission
  */
-export const acceptSettlement = async ({
-  amount,
-  message,
-}: {
-  amount: number;
-  message: string;
-}) => {
+export const acceptSettlement = async ({ amount }: { amount: number }) => {
   const response = await axios.post(`${API_BASE_URL}/settlements`, {
     party: 'b',
     status: 'accepted',
     amount,
-    message,
   });
 
   return response.data;

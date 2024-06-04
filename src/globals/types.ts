@@ -11,12 +11,4 @@ export type SettlementType = {
   party: SettlementPartyType;
   status: SettlementStatusType;
   amount: number;
-  message?: string;
-};
-
-export type CreateSettlementBodyType = {
-  party: SettlementPartyType;
-  status: SettlementStatusType;
-  amount: number;
-  message: string | null;
 };

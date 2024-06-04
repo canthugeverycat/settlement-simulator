@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import type {
@@ -18,14 +18,12 @@ import {
 } from '../../utils/api';
 import Button from '../Button';
 import StatusPill from '../StatusPill';
-import ToggleableTextarea from '../ToggleableTextArea';
 
 type InputProps = {
   className?: String;
   status: SettlementStatusType;
   party: SettlementPartyType | null;
   amount: number;
-  message?: string;
 };
 
 /**
@@ -33,16 +31,9 @@ type InputProps = {
  * Used by both parties
  * @param {InputProps} props
  */
-const InputForm = ({
-  className = '',
-  status,
-  party,
-  amount,
-  message,
-}: InputProps) => {
+const InputForm = ({ className = '', status, party, amount }: InputProps) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(amount);
-  const [text, setText] = useState(message || '');
 
   const isUpdating = useSelector(
     (store: RootStateType) => store.settlements.isUpdating
@@ -50,9 +41,6 @@ const InputForm = ({
 
   const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) =>
     setValue(parseFloat(e.target.value));
-
-  const handleMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
-    setText(e.target.value);
 
   /**
    * Creates a settlement item
@@ -65,7 +53,6 @@ const InputForm = ({
   ) => {
     const body = {
       amount: value,
-      message: text,
     };
 
     const http = {
@@ -86,13 +73,26 @@ const InputForm = ({
     }
   };
 
+  /**
+   * Determines whether controls elements are disabled
+   * based on the specified criteria
+   */
+  const areControlsDisabled = useMemo(() => {
+    let dis = false;
+
+    if (
+      (party === 'a' && status === 'accepted') ||
+      (party === 'b' && status !== 'pending') ||
+      isUpdating
+    ) {
+      dis = true;
+    }
+    return dis;
+  }, [party, status, isUpdating]);
+
   useEffect(() => {
     setValue(amount);
-
-    if (status === 'pending' || party === 'b') {
-      setText(message || '');
-    }
-  }, [amount, message, status, party]);
+  }, [amount]);
 
   const outlineColorClass =
     {
@@ -111,7 +111,7 @@ const InputForm = ({
 
         <input
           type="number"
-          disabled={party === 'b'}
+          disabled={party === 'b' || areControlsDisabled}
           min={0}
           value={value}
           onChange={handleAmountChange}
@@ -119,15 +119,12 @@ const InputForm = ({
         />
       </div>
 
-      {/* Optional message */}
-      <ToggleableTextarea value={text} onChange={handleMessageChange} />
-
       {/* Action Buttons */}
       {party === 'b' ? (
         <div className="flex flex-row justify-center gap-4">
           <Button
             color="success"
-            disabled={isUpdating}
+            disabled={areControlsDisabled}
             showLoader={isUpdating}
             size="large"
             className="mb-8"
@@ -136,7 +133,7 @@ const InputForm = ({
             Agree
           </Button>
           <Button
-            disabled={isUpdating}
+            disabled={areControlsDisabled}
             showLoader={isUpdating}
             color="error"
             size="large"
@@ -148,7 +145,7 @@ const InputForm = ({
         </div>
       ) : (
         <Button
-          disabled={!value || isUpdating}
+          disabled={!value || areControlsDisabled}
           showLoader={isUpdating}
           color="primary"
           size="full"

@@ -9,7 +9,6 @@ type HistoryItemProps = {
   createdAt: string;
   party: SettlementPartyType;
   status: SettlementStatusType;
-  message?: string;
   amount: number;
   className?: string;
 };
@@ -22,7 +21,6 @@ const HistoryItem = ({
   createdAt,
   party,
   status,
-  message,
   amount,
   className = '',
 }: HistoryItemProps) => {
@@ -59,16 +57,9 @@ const HistoryItem = ({
       </span>
 
       {/* Amount */}
-      <span className={`text-s text-center font-bold text-primary`}>
+      <span className={`text-center text-lg font-bold text-primary`}>
         ${amount}
       </span>
-
-      {/* Message */}
-      {message ? (
-        <p>"{message}"</p>
-      ) : (
-        <p className="text-sm text-light-grey">{`<No message provided>`}</p>
-      )}
 
       {/* Datetime */}
       <span
