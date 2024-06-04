@@ -1,5 +1,3 @@
-import { faker } from '@faker-js/faker';
-
 import { SettlementType } from '../../globals/types';
 import {
   CREATE_ITEM,
@@ -18,26 +16,8 @@ export type StateType = {
   hasError: boolean;
 };
 
-// Some methods for faking the data
-const randomNum = (min: number, max: number): number =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-
-const populateMockData = (length: number = 1) => {
-  // @ts-ignore
-  const data: SettlementType[] = [...Array.from({ length })].map((item, i) => ({
-    id: i,
-    createdAt: faker.date.anytime(),
-    party: ['a', 'b'][randomNum(0, 1)],
-    status: ['pending', 'accepted', 'rejected'][randomNum(0, 2)],
-    message: ['', faker.lorem.sentence({ min: 3, max: 10 })][randomNum(0, 1)],
-    amount: randomNum(0, 1000),
-  }));
-
-  return data;
-};
-
 const initialState: StateType = {
-  data: populateMockData(20),
+  data: [],
   isFetching: false,
   isUpdating: false,
   hasError: false,

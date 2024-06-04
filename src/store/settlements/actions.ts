@@ -44,10 +44,24 @@ export const fetchItemsFailure = (): FetchItemsFailureActionType => ({
 // CREATE_ITEM
 type CreateItemActionType = {
   type: typeof CREATE_ITEM;
+  payload: {
+    amount: number;
+    message: string;
+  };
 };
 
-export const createItem = (): CreateItemActionType => ({
+export const createItem = ({
+  amount,
+  message,
+}: {
+  amount: number;
+  message: string;
+}): CreateItemActionType => ({
   type: CREATE_ITEM,
+  payload: {
+    amount,
+    message,
+  },
 });
 
 // CREATE_ITEM_SUCCESS

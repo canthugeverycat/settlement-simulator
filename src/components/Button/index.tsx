@@ -1,6 +1,7 @@
 type ButtonProps = {
   size?: 'small' | 'medium' | 'large' | 'full';
   color?: 'primary' | 'secondary' | 'success' | 'error';
+  disabled?: boolean;
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
@@ -13,6 +14,7 @@ type ButtonProps = {
 const Button = ({
   size = 'medium',
   color = 'primary',
+  disabled = false,
   className = '',
   children,
   onClick,
@@ -28,20 +30,21 @@ const Button = ({
   }[size];
 
   const colorClass = {
-    primary:
-      'text-white bg-gradient-to-r from-primary to-blue-400 hover:bg-secondary',
-    secondary:
-      'text-white bg-gradient-to-r from-secondary to-purple-400 hover:bg-secondary',
-    success:
-      'text-white bg-gradient-to-r from-success to-primary hover:bg-secondary',
-    error:
-      'text-white bg-gradient-to-r from-error to-red-800 hover:bg-secondary',
+    primary: 'text-white bg-gradient-to-r from-primary to-blue-400',
+    secondary: 'text-white bg-gradient-to-r from-secondary to-purple-400',
+    success: 'text-white bg-gradient-to-r from-success to-primary',
+    error: 'text-white bg-gradient-to-r from-error to-red-800',
   }[color];
+
+  const disabledClass = disabled
+    ? 'bg-gradient-to-r from-black to-light-grey hover:scale-100 hover:bg-gradient-to-r opacity-20 hover:opacity-20'
+    : '';
 
   return (
     <button
       onClick={onClick}
-      className={`${className} ${baseClass} ${sizeClass} ${colorClass}`}
+      disabled={disabled}
+      className={`${className} ${baseClass} ${sizeClass} ${colorClass} ${disabledClass}`}
     >
       {children}
     </button>

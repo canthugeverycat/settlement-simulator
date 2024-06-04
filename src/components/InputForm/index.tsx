@@ -1,9 +1,20 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import type {
   SettlementPartyType,
   SettlementStatusType,
 } from '../../globals/types';
+import {
+  createItem,
+  createItemFailure,
+  createItemSuccess,
+} from '../../store/settlements/actions';
+import {
+  acceptSettlement as httpAcceptSettlement,
+  rejectSettlement as httpRejectSettlement,
+  submitSettlement as httpSubmitSettlement,
+} from '../../utils/api';
 import Button from '../Button';
 import StatusPill from '../StatusPill';
 import ToggleableTextarea from '../ToggleableTextArea';
@@ -28,6 +39,7 @@ const InputForm = ({
   amount,
   message,
 }: InputProps) => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState(amount);
   const [text, setText] = useState(message || '');
 
@@ -37,6 +49,46 @@ const InputForm = ({
   const handleMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
     setText(e.target.value);
 
+  /**
+   * Creates a settlement item
+   * This covers all change cases from either party
+   *
+   * @param {string} newStatus The new status of the settlement
+   */
+  const handleCreateSettlementItem = async (
+    newStatus: SettlementStatusType
+  ) => {
+    const body = {
+      amount: value,
+      message: text,
+    };
+
+    const http = {
+      pending: httpSubmitSettlement,
+      accepted: httpAcceptSettlement,
+      rejected: httpRejectSettlement,
+    }[newStatus];
+
+    dispatch(createItem(body));
+
+    try {
+      const data = await http(body);
+
+      dispatch(createItemSuccess(data));
+    } catch (e) {
+      console.error(e);
+      dispatch(createItemFailure());
+    }
+  };
+
+  useEffect(() => {
+    setValue(amount);
+
+    if (status === 'pending' || party === 'b') {
+      setText(message || '');
+    }
+  }, [amount, message, status, party]);
+
   const outlineColorClass =
     {
       accepted: 'outline-success',
@@ -45,11 +97,7 @@ const InputForm = ({
     }[status] || 'outline-primary';
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-    >
+    <>
       {/* Amount input */}
       <div
         className={`${className} ${outlineColorClass} relative mb-8 rounded-md outline outline-4`}
@@ -72,19 +120,35 @@ const InputForm = ({
       {/* Action Buttons */}
       {party === 'b' ? (
         <div className="flex flex-row justify-center gap-4">
-          <Button color="success" size="large" className="mb-8">
+          <Button
+            color="success"
+            size="large"
+            className="mb-8"
+            onClick={() => handleCreateSettlementItem('accepted')}
+          >
             Agree
           </Button>
-          <Button color="error" size="large" className="mb-8">
+          <Button
+            color="error"
+            size="large"
+            className="mb-8"
+            onClick={() => handleCreateSettlementItem('rejected')}
+          >
             Dispute
           </Button>
         </div>
       ) : (
-        <Button color="primary" size="full" className="mb-8">
+        <Button
+          disabled={!value}
+          color="primary"
+          size="full"
+          className="mb-8"
+          onClick={() => handleCreateSettlementItem('pending')}
+        >
           Submit
         </Button>
       )}
-    </form>
+    </>
   );
 };
 

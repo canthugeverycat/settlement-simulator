@@ -21,7 +21,7 @@ const History = () => {
 
       <div className="flex w-full flex-col gap-6 overflow-scroll py-8">
         {data.map((item) => (
-          <HistoryItem {...item} />
+          <HistoryItem key={item.id} {...item} />
         ))}
         {!data.length && (
           <p className="text-center text-sm text-light-grey">

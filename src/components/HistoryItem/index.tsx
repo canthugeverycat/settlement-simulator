@@ -2,20 +2,24 @@ import type {
   SettlementPartyType,
   SettlementStatusType,
 } from '../../globals/types';
+import { getHumanReadableDatetime } from '../../utils/functions';
 import StatusPill from '../StatusPill';
 
 type HistoryItemProps = {
+  createdAt: string;
   party: SettlementPartyType;
   status: SettlementStatusType;
   message?: string;
   amount: number;
   className?: string;
 };
+
 /**
  * A history item showing one activity
  * @param {HistoryItemProps} props;
  */
 const HistoryItem = ({
+  createdAt,
   party,
   status,
   message,
@@ -55,11 +59,9 @@ const HistoryItem = ({
       </span>
 
       {/* Amount */}
-      {status !== 'rejected' && (
-        <span className={`text-s text-center font-bold text-primary`}>
-          ${amount}
-        </span>
-      )}
+      <span className={`text-s text-center font-bold text-primary`}>
+        ${amount}
+      </span>
 
       {/* Message */}
       {message ? (
@@ -72,7 +74,7 @@ const HistoryItem = ({
       <span
         className={`${alignDateClasses} absolute bottom-2.5 text-xs text-light-grey`}
       >
-        Mon 3 Jun 16:29
+        {getHumanReadableDatetime(createdAt)}
       </span>
 
       {/* Status */}

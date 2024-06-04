@@ -16,7 +16,7 @@ const ToggleableTextarea = ({ value, onChange }: ToggleableTextAreaProps) => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       {showMessage && (
         <textarea
           {...{ value, onChange }}
