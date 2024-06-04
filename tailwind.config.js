@@ -24,6 +24,9 @@ const config = {
         sans: ['Open Sans', 'sans-serif'],
         bebas: ['Bebas Neue', 'sans-serif'],
       },
+      screens: {
+        xs: '480px',
+      },
     },
   },
   plugins: [],

@@ -9,8 +9,7 @@ db.serialize(() => {
       createdAt TEXT,
       party TEXT,
       status TEXT,
-      amount REAL,
-      message TEXT
+      amount REAL
     )
   `);
 });

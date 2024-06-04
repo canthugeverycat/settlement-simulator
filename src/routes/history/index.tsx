@@ -16,7 +16,7 @@ const History = () => {
   );
 
   return (
-    <div className="max-h-with-margins flex min-w-[400px] max-w-[500px] flex-col items-center rounded-md bg-white p-6 shadow-lg">
+    <div className="max-h-with-margins xs:max-w-[500px] mx-4 flex w-full min-w-[400px] flex-col items-center rounded-md bg-white p-6 shadow-lg">
       {/* Logo and title */}
       <Logo size="extrasmall" />
       <p className="text-l">Settlement history for parties A and B</p>
