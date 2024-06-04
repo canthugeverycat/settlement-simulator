@@ -1,8 +1,10 @@
+import type { SettlementStatusType } from '../../globals/types';
+
 type StatusPillProps = {
   className?: string;
   size?: 'small' | 'medium';
   animate?: boolean;
-  status: 'accepted' | 'rejected' | 'pending';
+  status: SettlementStatusType;
 };
 
 /**

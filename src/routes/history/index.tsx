@@ -1,26 +1,15 @@
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import HistoryItem from '../../components/HistoryItem';
 import Logo from '../../components/Logo';
 import Separator from '../../components/Separator';
+import type { RootStateType } from '../../store/rootReducer';
 
 /**
  * History Page
  */
 const History = () => {
-  const [data, setData] = useState<
-    {
-      party: 'a' | 'b';
-      status: 'accepted' | 'rejected' | 'pending';
-      message?: string;
-    }[]
-  >([
-    {
-      party: 'b',
-      status: 'accepted',
-      message: 'Thank you! Im satisfied with this',
-    },
-  ]);
+  const data = useSelector((store: RootStateType) => store.settlements.data);
 
   return (
     <div className="max-h-with-margins flex min-w-[400px] max-w-[500px] flex-col items-center rounded-md bg-white p-6 shadow-lg">
@@ -34,6 +23,11 @@ const History = () => {
         {data.map((item) => (
           <HistoryItem {...item} />
         ))}
+        {!data.length && (
+          <p className="text-center text-sm text-light-grey">
+            There is nothing to show for now. Nobody has made any actions.
+          </p>
+        )}
       </div>
 
       <Separator direction="top" spacing="none" />

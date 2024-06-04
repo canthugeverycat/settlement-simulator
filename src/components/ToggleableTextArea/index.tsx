@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
+
+type ToggleableTextAreaProps = {
+  value: string;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+};
 
 /**
  * A Textarea that can be shown or hidden
  */
-const ToggleableTextarea = () => {
+const ToggleableTextarea = ({ value, onChange }: ToggleableTextAreaProps) => {
   const [showMessage, setShowMessage] = useState(false);
 
   const handleMessageVisibility = () => {
@@ -14,7 +19,7 @@ const ToggleableTextarea = () => {
     <div>
       {showMessage && (
         <textarea
-          onChange={() => {}}
+          {...{ value, onChange }}
           className="h-14 w-full rounded-md border p-2 text-center font-sans text-sm focus:ring-transparent"
         />
       )}

@@ -1,9 +1,14 @@
+import type {
+  SettlementPartyType,
+  SettlementStatusType,
+} from '../../globals/types';
 import StatusPill from '../StatusPill';
 
 type HistoryItemProps = {
-  party: 'a' | 'b';
-  status: 'accepted' | 'rejected' | 'pending';
+  party: SettlementPartyType;
+  status: SettlementStatusType;
   message?: string;
+  amount: number;
   className?: string;
 };
 /**
@@ -14,8 +19,12 @@ const HistoryItem = ({
   party,
   status,
   message,
+  amount,
   className = '',
 }: HistoryItemProps) => {
+  const baseClass =
+    'relative flex min-w-[240px] max-w-[90%] flex-col rounded-md border-2 p-4 pb-8 shadow-lg';
+
   const alignContainerClasses = {
     a: 'mr-auto',
     b: 'ml-auto',
@@ -37,15 +46,20 @@ const HistoryItem = ({
   }[party];
 
   return (
-    <div
-      className={`${className} ${alignContainerClasses} relative flex max-w-[90%] flex-col rounded-md border-2 p-4 pb-8 shadow-lg`}
-    >
+    <div className={`${className} ${alignContainerClasses} ${baseClass}`}>
       {/* Party name */}
       <span
         className={`${alignNameClasses} absolute -top-3 rounded-full border-2 bg-white px-2 py-0.5 text-xs font-bold uppercase`}
       >
         Party {party}
       </span>
+
+      {/* Amount */}
+      {status !== 'rejected' && (
+        <span className={`text-s text-center font-bold text-primary`}>
+          ${amount}
+        </span>
+      )}
 
       {/* Message */}
       {message ? (
