@@ -11,8 +11,8 @@ const router = express.Router();
  * @return  {SettlementItemType} A settlement item
  */
 router.get('/:id', async (req, res) => {
-  console.log('Excuse me ??');
   const { id } = req.params;
+
   try {
     const settlement = await dbGetOne(id);
 

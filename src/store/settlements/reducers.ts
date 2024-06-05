@@ -6,6 +6,9 @@ import {
   FETCH_ITEMS,
   FETCH_ITEMS_FAILURE,
   FETCH_ITEMS_SUCCESS,
+  FETCH_ONE_ITEM,
+  FETCH_ONE_ITEM_FAILURE,
+  FETCH_ONE_ITEM_SUCCESS,
 } from './action-types';
 import { SettlementsActionType } from './actions';
 
@@ -39,8 +42,10 @@ export const settlementsReducer = (
       return { ...state, hasError: true, isFetching: false };
     }
     case CREATE_ITEM:
+    case FETCH_ONE_ITEM:
       return { ...state, isUpdating: true, hasError: false };
-    case CREATE_ITEM_SUCCESS: {
+    case CREATE_ITEM_SUCCESS:
+    case FETCH_ONE_ITEM_SUCCESS: {
       const { data: item } = action.payload;
       const { data } = state;
 
@@ -51,7 +56,8 @@ export const settlementsReducer = (
         hasError: false,
       };
     }
-    case CREATE_ITEM_FAILURE: {
+    case CREATE_ITEM_FAILURE:
+    case FETCH_ONE_ITEM_FAILURE: {
       return { ...state, hasError: true, isUpdating: false };
     }
     default:

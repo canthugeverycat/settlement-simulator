@@ -6,19 +6,22 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const settlementsRouter = require('./api');
-const delayMiddleware = require('./api/delay.js');
+const initializeWS = require('./ws/index');
 
 const app = express();
 const server = http.createServer(app);
 
 app.use(express.json());
-app.use(delayMiddleware);
+
 app.use(
   cors({
     origin: '*',
     methods: ['GET', 'POST'],
   })
 );
+
+const wss = initializeWS(server);
+app.set('wss', wss);
 
 app.use('/settlements', settlementsRouter);
 

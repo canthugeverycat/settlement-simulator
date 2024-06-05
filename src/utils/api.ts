@@ -12,6 +12,15 @@ export const fetchSettlements = async () => {
 };
 
 /**
+ * Fetches one settlement item from the API
+ */
+export const fetchOneSettlement = async (id: number) => {
+  const response = await axios.get(`${API_BASE_URL}/settlements/${id}`);
+
+  return response.data;
+};
+
+/**
  * Submits a settlement amount from party A to party B
  *
  * @param {number} amount Monetary amount

@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import HistoryItem from '../../components/HistoryItem';
 import Loader from '../../components/Loader';
@@ -14,6 +16,15 @@ const History = () => {
   const isFetching = useSelector(
     (store: RootStateType) => store.settlements.isFetching
   );
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const params = new URLSearchParams(location.search);
+  const party = params.get('party');
+
+  useEffect(() => {
+    if (!party || !['a', 'b'].includes(party)) navigate('/');
+  }, [party, navigate]);
 
   return (
     <div className="max-h-with-margins xs:max-w-[500px] mx-4 flex w-full min-w-[400px] flex-col items-center rounded-md bg-white p-6 shadow-lg">

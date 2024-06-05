@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import type {
@@ -61,7 +61,7 @@ const InputForm = ({ className = '', status, party, amount }: InputProps) => {
       rejected: httpRejectSettlement,
     }[newStatus];
 
-    dispatch(createItem(body));
+    dispatch(createItem());
 
     try {
       const data = await http(body);

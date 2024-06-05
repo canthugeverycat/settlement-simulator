@@ -7,7 +7,7 @@ const router = express.Router();
 
 /** Set up API endpoints */
 router.use('/', getAllRouter);
-router.use('/:id', getOneRouter);
+router.use('/', getOneRouter);
 router.use('/', createRouter);
 
 module.exports = router;

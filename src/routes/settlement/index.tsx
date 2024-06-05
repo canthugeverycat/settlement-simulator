@@ -90,7 +90,7 @@ const Settlement = () => {
       )}
 
       <NavLink
-        to="/history"
+        to={`/history?party=${party}`}
         className="mt-2 text-sm font-bold uppercase text-primary transition-all duration-200 hover:scale-105 active:scale-100"
       >
         See full history
