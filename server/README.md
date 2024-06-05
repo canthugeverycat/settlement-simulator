@@ -75,7 +75,7 @@ The API follows the REST API principles, covering 2 routes in total.
 
 Returns all the settlement items as an array sorted by their time of creation in descending order.
 
-Response example:
+_Response example_:
 
 ```json
 [
@@ -100,7 +100,7 @@ Response example:
 
 Creates a new settlement item in the database and returns it in response.
 
-Request body:
+_Request body_:
 
 ```json
 {
@@ -110,7 +110,7 @@ Request body:
 }
 ```
 
-Response example:
+_Response example_:
 
 ```json
 {
@@ -126,7 +126,7 @@ Response example:
 
 Gets a single settlement item from the table by its **id** value.
 
-Response example:
+_Response example_:
 
 ```json
 {

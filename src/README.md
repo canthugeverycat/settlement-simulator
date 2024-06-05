@@ -36,8 +36,8 @@ In addition, at the bottom you will see the last update from the oposing party.
 When you change a settlement, the amount and status will automatically update for both parties.
 
 <div style="display: flex;">
-  <img src="https://i.ibb.co/q1jwMcY/Screenshot-2024-06-05-at-21-13-04.png" alt="Settlement Screen A" style="width:50%" />
-  <img src="https://i.ibb.co/kJTrkwx/Screenshot-2024-06-05-at-21-13-18.png" alt="Settlement Screen B" style="width:50%"/>
+  <img src="https://i.ibb.co/q1jwMcY/Screenshot-2024-06-05-at-21-13-04.png" alt="Settlement Screen A" style="width:45%; display:inline-block;" />
+  <img src="https://i.ibb.co/kJTrkwx/Screenshot-2024-06-05-at-21-13-18.png" alt="Settlement Screen B" style="width:45%; display:inline-block;"/>
 </div>
 
 ### History Screen
@@ -152,11 +152,6 @@ This folder houses the components as the building blocks of the app.
 A styled button component, allows for different sizing and color options through props.
 
 <img src="https://i.ibb.co/31kZwGc/Screenshot-2024-06-05-at-21-42-36.png" alt="Button component" />
-
-### Header
-
-A header component showing the logo and a title.
-<img src="https://i.ibb.co/yYffND2/Screenshot-2024-06-05-at-21-44-18.png" alt="Header component" />
 
 ### HistoryItem
 
