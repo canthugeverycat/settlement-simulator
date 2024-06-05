@@ -1,3 +1,4 @@
+import { STATUSES } from '../../globals/const';
 import type { SettlementStatusType } from '../../globals/types';
 
 type StatusPillProps = {
@@ -25,9 +26,9 @@ const StatusPill = ({
   }[size];
 
   const colorClass = {
-    accepted: 'bg-success',
-    rejected: 'bg-error',
-    pending: 'bg-info',
+    [STATUSES.ACCEPTED]: 'bg-success',
+    [STATUSES.REJECTED]: 'bg-error',
+    [STATUSES.PENDING]: 'bg-info',
   }[status];
 
   return (

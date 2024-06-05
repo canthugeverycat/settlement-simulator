@@ -26,6 +26,11 @@ const initialState: StateType = {
   hasError: false,
 };
 
+/**
+ * Reducer for Settlements
+ *
+ * @return {StateType}
+ */
 export const settlementsReducer = (
   state: StateType = initialState,
   action: SettlementsActionType

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import Separator from '../../components/Separator';
+import { PARTIES } from '../../globals/const';
 
 /**
  * Landing Page
@@ -25,14 +26,14 @@ const LandingPage = () => {
         <Button
           size="medium"
           color="secondary"
-          onClick={() => navigate('/settlement?party=a')}
+          onClick={() => navigate(`/settlement?party=${PARTIES.A}`)}
         >
           Party A
         </Button>
         <Button
           size="medium"
           color="secondary"
-          onClick={() => navigate('/settlement?party=b')}
+          onClick={() => navigate(`/settlement?party=${PARTIES.B}`)}
         >
           Party B
         </Button>

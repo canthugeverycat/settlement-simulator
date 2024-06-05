@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
+import { PARTIES, URL_PARAMS, WS_ACTIONS } from './globals/const';
 import { SettlementPartyType } from './globals/types';
 import History from './routes/history';
 import LandingPage from './routes/landing';
@@ -28,7 +29,7 @@ const App = () => {
 
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const party = params.get('party') || ('' as SettlementPartyType | '');
+  const party = params.get(URL_PARAMS.PARTY) as SettlementPartyType;
 
   /**
    * Fetches all settlement items from the API
@@ -73,13 +74,16 @@ const App = () => {
    * Subscribe to the opposite party updates
    */
   useEffect(() => {
-    if (!ws || !['a', 'b'].includes(party)) return;
+    if (!ws || ![PARTIES.A, PARTIES.B].includes(party)) return;
 
-    const partyToSubscribeTo = party === 'a' ? 'b' : 'a';
+    const partyToSubscribeTo = party === PARTIES.A ? PARTIES.B : PARTIES.A;
 
     ws.onopen = () => {
       ws.send(
-        JSON.stringify({ action: 'subscribe', party: partyToSubscribeTo })
+        JSON.stringify({
+          action: WS_ACTIONS.SUBSCRIBE,
+          party: partyToSubscribeTo,
+        })
       );
     };
 

@@ -2,8 +2,10 @@
  * Global TS types
  */
 
-export type SettlementStatusType = 'pending' | 'accepted' | 'rejected';
-export type SettlementPartyType = 'a' | 'b';
+import { PARTIES, STATUSES } from './const';
+
+export type SettlementStatusType = (typeof STATUSES)[keyof typeof STATUSES];
+export type SettlementPartyType = (typeof PARTIES)[keyof typeof PARTIES];
 
 export type SettlementType = {
   id: number;

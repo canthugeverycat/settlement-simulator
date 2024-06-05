@@ -6,6 +6,8 @@ import HistoryItem from '../../components/HistoryItem';
 import Loader from '../../components/Loader';
 import Logo from '../../components/Logo';
 import Separator from '../../components/Separator';
+import { PARTIES, URL_PARAMS } from '../../globals/const';
+import { SettlementPartyType } from '../../globals/types';
 import type { RootStateType } from '../../store/rootReducer';
 
 /**
@@ -20,10 +22,10 @@ const History = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
-  const party = params.get('party');
+  const party = params.get(URL_PARAMS.PARTY) as SettlementPartyType;
 
   useEffect(() => {
-    if (!party || !['a', 'b'].includes(party)) navigate('/');
+    if (!party || ![PARTIES.A, PARTIES.B].includes(party)) navigate('/');
   }, [party, navigate]);
 
   return (

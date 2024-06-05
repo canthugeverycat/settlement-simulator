@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { API_BASE_URL } from '../globals/const';
+import { API_BASE_URL, PARTIES, STATUSES } from '../globals/const';
 
 /**
  * Fetches all the settlements from the API
@@ -27,8 +27,8 @@ export const fetchOneSettlement = async (id: number) => {
  */
 export const submitSettlement = async ({ amount }: { amount: number }) => {
   const response = await axios.post(`${API_BASE_URL}/settlements`, {
-    party: 'a',
-    status: 'pending',
+    party: PARTIES.A,
+    status: STATUSES.PENDING,
     amount,
   });
 
@@ -42,8 +42,8 @@ export const submitSettlement = async ({ amount }: { amount: number }) => {
  */
 export const rejectSettlement = async ({ amount }: { amount: number }) => {
   const response = await axios.post(`${API_BASE_URL}/settlements`, {
-    party: 'b',
-    status: 'rejected',
+    party: PARTIES.B,
+    status: STATUSES.REJECTED,
     amount,
   });
 
@@ -57,8 +57,8 @@ export const rejectSettlement = async ({ amount }: { amount: number }) => {
  */
 export const acceptSettlement = async ({ amount }: { amount: number }) => {
   const response = await axios.post(`${API_BASE_URL}/settlements`, {
-    party: 'b',
-    status: 'accepted',
+    party: PARTIES.B,
+    status: STATUSES.ACCEPTED,
     amount,
   });
 

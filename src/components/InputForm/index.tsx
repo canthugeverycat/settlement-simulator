@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { PARTIES, STATUSES } from '../../globals/const';
 import type {
   SettlementPartyType,
   SettlementStatusType,
@@ -56,9 +57,9 @@ const InputForm = ({ className = '', status, party, amount }: InputProps) => {
     };
 
     const http = {
-      pending: httpSubmitSettlement,
-      accepted: httpAcceptSettlement,
-      rejected: httpRejectSettlement,
+      [STATUSES.PENDING]: httpSubmitSettlement,
+      [STATUSES.ACCEPTED]: httpAcceptSettlement,
+      [STATUSES.REJECTED]: httpRejectSettlement,
     }[newStatus];
 
     dispatch(createItem());
@@ -81,8 +82,8 @@ const InputForm = ({ className = '', status, party, amount }: InputProps) => {
     let dis = false;
 
     if (
-      (party === 'a' && status === 'accepted') ||
-      (party === 'b' && status !== 'pending') ||
+      (party === PARTIES.A && status === STATUSES.ACCEPTED) ||
+      (party === PARTIES.B && status !== STATUSES.PENDING) ||
       isUpdating
     ) {
       dis = true;
@@ -111,7 +112,7 @@ const InputForm = ({ className = '', status, party, amount }: InputProps) => {
 
         <input
           type="number"
-          disabled={party === 'b' || areControlsDisabled}
+          disabled={party === PARTIES.B || areControlsDisabled}
           min={0}
           value={value}
           onChange={handleAmountChange}
@@ -120,7 +121,7 @@ const InputForm = ({ className = '', status, party, amount }: InputProps) => {
       </div>
 
       {/* Action Buttons */}
-      {party === 'b' ? (
+      {party === PARTIES.B ? (
         <div className="flex flex-row justify-center gap-4">
           <Button
             color="success"
@@ -128,7 +129,7 @@ const InputForm = ({ className = '', status, party, amount }: InputProps) => {
             showLoader={isUpdating}
             size="large"
             className="mb-8"
-            onClick={() => handleCreateSettlementItem('accepted')}
+            onClick={() => handleCreateSettlementItem(STATUSES.ACCEPTED)}
           >
             Agree
           </Button>
@@ -138,7 +139,7 @@ const InputForm = ({ className = '', status, party, amount }: InputProps) => {
             color="error"
             size="large"
             className="mb-8"
-            onClick={() => handleCreateSettlementItem('rejected')}
+            onClick={() => handleCreateSettlementItem(STATUSES.REJECTED)}
           >
             Dispute
           </Button>
@@ -150,7 +151,7 @@ const InputForm = ({ className = '', status, party, amount }: InputProps) => {
           color="primary"
           size="full"
           className="mb-8"
-          onClick={() => handleCreateSettlementItem('pending')}
+          onClick={() => handleCreateSettlementItem(STATUSES.PENDING)}
         >
           Submit
         </Button>

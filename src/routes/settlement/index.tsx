@@ -7,6 +7,7 @@ import InputForm from '../../components/InputForm';
 import Loader from '../../components/Loader';
 import Logo from '../../components/Logo';
 import Separator from '../../components/Separator';
+import { PARTIES, URL_PARAMS } from '../../globals/const';
 import { SettlementPartyType } from '../../globals/types';
 import type { RootStateType } from '../../store/rootReducer';
 
@@ -17,9 +18,9 @@ const Settlement = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
-  const paramParty = params.get('party') as SettlementPartyType | null;
-  const party = ['a', 'b'].includes(paramParty || '')
-    ? (paramParty as SettlementPartyType)
+  const paramParty = params.get(URL_PARAMS.PARTY) as SettlementPartyType;
+  const party = [PARTIES.A, PARTIES.B].includes(paramParty || '')
+    ? paramParty
     : null;
 
   const isFetching = useSelector(
@@ -44,17 +45,17 @@ const Settlement = () => {
 
     if (lastItem) text = `The other party hasn't responded yet`;
 
-    if (!lastItem && party === 'a')
+    if (!lastItem && party === PARTIES.A)
       text = 'Suggest an amount for the other party to respond';
 
-    if (!lastItem && party === 'b')
+    if (!lastItem && party === PARTIES.B)
       text = `Wait for the other party to submit a suggestion`;
 
     return text;
   };
 
   useEffect(() => {
-    if (!party || (party !== 'a' && party !== 'b')) navigate('/');
+    if (!party || (party !== PARTIES.A && party !== PARTIES.B)) navigate('/');
   }, [party, navigate]);
 
   return (
@@ -78,7 +79,9 @@ const Settlement = () => {
       <Separator direction="top" spacing="small" />
 
       {/* Last update from other party */}
-      <p className="mb-4">Last {party === 'a' ? 'response' : 'request'}</p>
+      <p className="mb-4">
+        Last {party === PARTIES.A ? 'response' : 'request'}
+      </p>
       {lastResponse && (
         <HistoryItem className="ml-auto mr-auto w-full" {...lastResponse} />
       )}
