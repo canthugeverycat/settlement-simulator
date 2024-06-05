@@ -207,4 +207,4 @@ I would add notifications using the Notification API. The notifications would fi
 Given that we are dealing with sensitive information such as settlement amounts, I would keep the messages informative but vague.
 
 _e.g. "Party B responded to your submission!"_\
-\*e.g. "Party A submitted a new amount!"\
+\*e.g. "Party A submitted a new amount!"
