@@ -19,7 +19,7 @@ import {
   fetchOneSettlement as httpFetchOneSettlement,
   fetchSettlements as httpFetchSettlements,
 } from './utils/api';
-import useWebSocket, { WebSocketData } from './utils/ws';
+import useWebSocket, { WebSocketData } from './utils/useWebSocket';
 
 /**
  * Main skeleton of the app, handles routing and API fetching logic
