@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start-app": "node ./server/index.js & react-scripts start",
-    "start": "node ./server/index.js & react-scripts start",
+    "start": "node ./server/index.js",
     "build": "react-scripts build",
     "server": "node ./server/index.js",
     "test": "react-scripts test",
