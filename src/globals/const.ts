@@ -1,5 +1,5 @@
 // API URLs
-export const BASE_URL = 'settlement-simulator-88372a08cee5.herokuapp.com';
+export const BASE_URL = 'settlement-server-10bf0c1a76a0.herokuapp.com';
 export const API_BASE_URL = `https://${BASE_URL}`;
 export const WS_BASE_URL = `wss://${BASE_URL}`;
 
