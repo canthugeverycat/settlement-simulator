@@ -64,3 +64,12 @@ export const acceptSettlement = async ({ amount }: { amount: number }) => {
 
   return response.data;
 };
+
+/**
+ * Deletes all the settlements from the API
+ */
+export const deleteAllSettlements = async () => {
+  const response = await axios.delete(`${API_BASE_URL}/settlements`);
+
+  return response.data;
+};

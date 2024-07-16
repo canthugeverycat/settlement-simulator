@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { PARTIES, URL_PARAMS, WS_ACTIONS } from './globals/const';
@@ -7,6 +7,7 @@ import { SettlementPartyType } from './globals/types';
 import History from './routes/history';
 import LandingPage from './routes/landing';
 import Settlement from './routes/settlement';
+import { RootStateType } from './store/rootReducer';
 import {
   fetchItems,
   fetchItemsFailure,
@@ -16,8 +17,8 @@ import {
   fetchOneItemSuccess,
 } from './store/settlements/actions';
 import {
+  deleteAllSettlements as httpDeleteAllSettlements,
   fetchOneSettlement as httpFetchOneSettlement,
-  fetchSettlements as httpFetchSettlements,
 } from './utils/api';
 import useWebSocket, { WebSocketData } from './utils/useWebSocket';
 
@@ -27,22 +28,24 @@ import useWebSocket, { WebSocketData } from './utils/useWebSocket';
 const App = () => {
   const dispatch = useDispatch();
 
+  const data = useSelector((store: RootStateType) => store.settlements.data);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const party = params.get(URL_PARAMS.PARTY) as SettlementPartyType;
 
   /**
-   * Fetches all settlement items from the API
+   * Deletes all settlement items
    */
-  const fetchSettlements = useCallback(async () => {
-    dispatch(fetchItems());
+  const deleteAllSettlements = useCallback(async () => {
     try {
-      const data = await httpFetchSettlements();
+      await httpDeleteAllSettlements();
+      if (data.length) {
+        window.location.reload();
+      }
 
-      dispatch(fetchItemsSuccess(data));
+      dispatch(fetchItemsSuccess([]));
     } catch (e) {
       console.error(e);
-      dispatch(fetchItemsFailure());
     }
   }, []);
 
@@ -67,8 +70,8 @@ const App = () => {
   const ws = useWebSocket({ onMessage: handleFetchNewItem });
 
   useEffect(() => {
-    fetchSettlements();
-  }, [fetchSettlements]);
+    deleteAllSettlements();
+  }, [deleteAllSettlements]);
 
   /**
    * Subscribe to the opposite party updates
