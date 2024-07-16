@@ -1,5 +1,3 @@
-<img src="https://leylinepro.com/_next/image?url=%2Fimg%2FL-logo-3.png&w=64&q=75" alt="LeyLine Logo" width="100" height="100" style="margin-left: -10px; margin-bottom: -20px;" />
-
 # Client Documentation
 
 This governs the client documentation for the app that allows for settlement disputes between two parties.
@@ -193,8 +191,7 @@ A pill element used to display an action's status. Can be animated or static. Co
 
 ### Testing
 
-If I had more time, I would add testing throughout the app.
-RTL for unit and integration testing and Happo for visual regression testing.
+Add testing throughout the app. RTL for unit and integration testing and Happo for visual regression testing.
 
 ### Error Handling
 
@@ -202,7 +199,7 @@ Error handling hasnt been covered in the app, UI-wise. The store could be easily
 
 ### Notifications
 
-I would add notifications using the Notification API. The notifications would fire for the user any time the oposing party submits a new change.
+Add notifications using the Notification API. The notifications would fire for the user any time the oposing party submits a new change.
 
 Given that we are dealing with sensitive information such as settlement amounts, I would keep the messages informative but vague.
 

@@ -14,7 +14,7 @@ const LandingPage = () => {
   return (
     <section
       className="flex max-w-[400px] flex-col items-center rounded-md bg-white px-6 py-10 shadow-lg"
-      aria-label="Welcome to LeyLine"
+      aria-label="Welcome"
     >
       <Header className="mb-4" />
 

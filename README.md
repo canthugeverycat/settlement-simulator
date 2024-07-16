@@ -1,10 +1,8 @@
-<img src="https://leylinepro.com/_next/image?url=%2Fimg%2FL-logo-3.png&w=64&q=75" alt="LeyLine Logo" width="100" height="100" style="margin-left: -10px; margin-bottom: -20px;" />
-
-# Dejan Skorupan LeyLine Assignment
+# Settlement Simulator
 
 ## ✏️ Project Description
 
-This technical challenge involves implementing a settlement process between two parties, Party A and Party B. The system should handle iterative negotiation of settlement amounts by Party A, along with approvals or objections from Party B. The process should ensure that all changes and responses are reflected on Party A's and Party B's interface.
+This app attempts to showcase a settlement process between two parties, Party A and Party B. The system handles iterative negotiation of settlement amounts by Party A, along with approvals or objections from Party B. The process ensures that all changes and responses are reflected on Party A's and Party B's interface in real time.
 
 To test the app I suggest you run the start script and then open up 2 browser windows both on [http://localhost:3000](http://localhost:3000). Choose Party A on one window and Party B on another one and place them side by side.
 

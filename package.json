@@ -1,5 +1,5 @@
 {
-  "name": "dejan-skorupan-ll-technical-task",
+  "name": "settlement-simulator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,7 +23,8 @@
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "websocket": "^1.0.35",
-    "ws": "^8.17.0"
+    "ws": "^8.17.0",
+    "@faker-js/faker": "^8.4.1"
   },
   "scripts": {
     "start-app": "node ./server/index.js & react-scripts start",
@@ -52,7 +53,6 @@
     ]
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.4.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
     "@types/react-router-dom": "^5.3.3",
     "@types/websocket": "^1.0.10",

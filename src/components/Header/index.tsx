@@ -11,7 +11,6 @@ type HeaderProps = {
 const Header = ({ className = '' }: HeaderProps) => (
   <div className={`${className} flex flex-col items-center`}>
     <Logo size="large" className="mb-4" />
-    <h1 className="text-xl">Welcome to LeyLine</h1>
   </div>
 );
 

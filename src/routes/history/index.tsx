@@ -29,7 +29,7 @@ const History = () => {
   }, [party, navigate]);
 
   return (
-    <div className="max-h-with-margins xs:max-w-[500px] mx-4 flex w-full min-w-[400px] flex-col items-center rounded-md bg-white p-6 shadow-lg">
+    <div className="max-h-with-margins mx-4 flex w-full min-w-[400px] flex-col items-center rounded-md bg-white p-6 shadow-lg xs:max-w-[500px]">
       {/* Logo and title */}
       <Logo size="extrasmall" />
       <p className="text-l">Settlement history for parties A and B</p>
@@ -39,7 +39,7 @@ const History = () => {
       {isFetching ? (
         <Loader />
       ) : (
-        <div className="flex w-full flex-col gap-6 overflow-scroll py-8">
+        <div className="flex w-full flex-col gap-6 overflow-auto py-8">
           {data.map((item) => (
             <HistoryItem key={item.id} {...item} />
           ))}

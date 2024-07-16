@@ -91,7 +91,7 @@ const App = () => {
   }, [ws, party]);
 
   return (
-    <main className="flex min-h-screen items-center justify-center overflow-scroll bg-gradient-to-r from-lilac to-indigo">
+    <main className="flex min-h-screen items-center justify-center overflow-auto bg-gradient-to-r from-lilac to-indigo">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/settlement" element={<Settlement />} />

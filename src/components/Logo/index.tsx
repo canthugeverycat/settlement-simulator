@@ -22,7 +22,7 @@ const Logo = ({ size = 'medium', className = '' }: LogoProps) => {
       <img
         className={`${className} ${sizeClasses} mask-image-logo`}
         src={NetworkGif}
-        alt="LeyLine Logo"
+        alt="Logo"
       />
     </a>
   );

@@ -1,5 +1,3 @@
-<img src="https://leylinepro.com/_next/image?url=%2Fimg%2FL-logo-3.png&w=64&q=75" alt="LeyLine Logo" width="100" height="100" style="margin-left: -10px; margin-bottom: -20px;" />
-
 # Server Documentation
 
 This governs the server documentation that allows for settlement disputes between two parties.
