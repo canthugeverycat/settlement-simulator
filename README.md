@@ -1,5 +1,7 @@
 # Settlement Simulator
 
+[🟢 Live Demo](https://settlement-simulator-88372a08cee5.herokuapp.com/)
+
 ## ✏️ Project Description
 
 This app attempts to showcase a settlement process between two parties, Party A and Party B. The system handles iterative negotiation of settlement amounts by Party A, along with approvals or objections from Party B. The process ensures that all changes and responses are reflected on Party A's and Party B's interface in real time.
