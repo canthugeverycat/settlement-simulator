@@ -1,6 +1,6 @@
 # Settlement Simulator
 
-[🟢 Live Demo](https://settlement-simulator-88372a08cee5.herokuapp.com/)
+[🟢 Live Demo](https://settlement-simulator-8a4b284a8b64.herokuapp.com)
 
 ## ✏️ Project Description
 
